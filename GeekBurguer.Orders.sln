@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2020
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeekBurguer.Orders.API", "GeekBurguer.Orders\GeekBurguer.Orders.API.csproj", "{A235B18B-D293-4D32-B6F7-F0E3268BDC23}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeekBurguer.Orders.Contract", "GeekBurguer.Orders.Contract\GeekBurguer.Orders.Contract.csproj", "{EDCB11E4-37C7-4B11-89A2-B36C97196BCC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A235B18B-D293-4D32-B6F7-F0E3268BDC23}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A235B18B-D293-4D32-B6F7-F0E3268BDC23}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A235B18B-D293-4D32-B6F7-F0E3268BDC23}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A235B18B-D293-4D32-B6F7-F0E3268BDC23}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EDCB11E4-37C7-4B11-89A2-B36C97196BCC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EDCB11E4-37C7-4B11-89A2-B36C97196BCC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EDCB11E4-37C7-4B11-89A2-B36C97196BCC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EDCB11E4-37C7-4B11-89A2-B36C97196BCC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A784A11F-80B8-459B-9B65-65D69D7AF9F4}
+	EndGlobalSection
+EndGlobal

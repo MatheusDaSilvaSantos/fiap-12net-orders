@@ -2,18 +2,20 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using GeekBurger.Orders.Contract.DTOs;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GeekBurger.Orders.API.Controllers
 {
     [Route("api/[controller]")]
-    public class OrdersController : Controller
+    public class PayController : Controller
     {
 
-        // PUT api/values/5
+        // POST api/pay
         [HttpPost]
-        public void Post([FromBody]string value)
+        public IActionResult Post([FromBody]PaymentToUpsert order)
         {
+            return new OkResult();
         }
     }
 }

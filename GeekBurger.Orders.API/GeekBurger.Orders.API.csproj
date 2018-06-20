@@ -20,4 +20,8 @@
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.2" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\GeekBurger.Orders.Contract\GeekBurger.Orders.Contract.csproj" />
+  </ItemGroup>
+
 </Project>

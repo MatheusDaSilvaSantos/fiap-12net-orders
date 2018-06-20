@@ -1,9 +1,10 @@
-﻿using GeekBurger.Orders.Contract.DTOs;
+﻿using GeekBurger.Orders.Mocks.DTOs;
 using System;
 using System.Collections.Generic;
 
-namespace GeekBurger.Orders.Contract
+namespace GeekBurger.Orders.Mocks
 {
+    [Obsolete("Essa classe devem vir do contrato do GeekBurger.UI.Contract")]
     public class OrderToUpsert
     {
         public Guid OrderId { get; set; }

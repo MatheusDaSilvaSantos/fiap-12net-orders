@@ -8,6 +8,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Swashbuckle.AspNetCore.Swagger;
 
 namespace GeekBurger.Orders.API
 {
@@ -25,10 +26,16 @@ namespace GeekBurger.Orders.API
         {
             var mvcCoreBuilder = services.AddMvcCore();
 
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new Info { Title = "GeekBurger - Orders", Version = "v1" });
+            });
+
             mvcCoreBuilder
-            .AddFormatterMappings()
-            .AddJsonFormatters()
-            .AddCors();
+                .AddFormatterMappings()
+                .AddJsonFormatters()
+                .AddCors()
+                .AddApiExplorer();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -38,6 +45,15 @@ namespace GeekBurger.Orders.API
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseSwagger();
+
+            
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "GeekBurger Orders API");
+            });
+
             app.UseMvc();
         }
     }

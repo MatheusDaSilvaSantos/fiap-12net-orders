@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace GeekBurger.Orders.Contract.DTOs
+namespace GeekBurger.Orders.Mocks.DTOs
 {
+    [Obsolete("Essa classe devem vir do contrato do GeekBurger.UI.Contract")]
     public class OrderProductToUpsert
     {
         public Guid ProductId { get; set; }

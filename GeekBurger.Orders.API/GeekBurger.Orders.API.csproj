@@ -2,6 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
+    <AssemblyName>GeekBurger.Orders.API</AssemblyName>
+    <RootNamespace>GeekBurger.Orders.API</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
@@ -9,6 +11,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="GeekBurger.Production.Contract" Version="1.0.0" />
+    <PackageReference Include="GeekBurger.Products.Contract" Version="3.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.5" />
   </ItemGroup>
 

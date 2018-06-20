@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27130.2020
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeekBurguer.Orders.API", "GeekBurguer.Orders\GeekBurguer.Orders.API.csproj", "{A235B18B-D293-4D32-B6F7-F0E3268BDC23}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeekBurger.Orders.API", "GeekBurguer.Orders\GeekBurger.Orders.API.csproj", "{A235B18B-D293-4D32-B6F7-F0E3268BDC23}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeekBurguer.Orders.Contract", "GeekBurguer.Orders.Contract\GeekBurguer.Orders.Contract.csproj", "{EDCB11E4-37C7-4B11-89A2-B36C97196BCC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeekBurger.Orders.Contract", "GeekBurguer.Orders.Contract\GeekBurger.Orders.Contract.csproj", "{EDCB11E4-37C7-4B11-89A2-B36C97196BCC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -11,18 +11,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="GeekBurger.Production.Contract" Version="1.0.0" />
-    <PackageReference Include="GeekBurger.Products.Contract" Version="3.0.0" />
+    <PackageReference Include="GeekBurger.Orders.Contract" Version="1.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.5" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="2.4.0" />
   </ItemGroup>
 
   <ItemGroup>
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.2" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\GeekBurger.Orders.Contract\GeekBurger.Orders.Contract.csproj" />
   </ItemGroup>
 
 </Project>

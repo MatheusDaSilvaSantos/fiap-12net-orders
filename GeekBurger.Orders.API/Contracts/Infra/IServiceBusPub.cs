@@ -11,9 +11,7 @@ namespace GeekBurger.Orders.API.Contracts.Infra
     {
         void EnsureTopicIsCreated();
 
-        void AddToMessageList(IEnumerable<EntityEntry<TEntity>> changes);
-
-        Message GetMessage(EntityEntry<TEntity> entity);
+        void AddToMessageList(IEnumerable<TEntity> changes);
 
         void SendMessagesAsync();
 

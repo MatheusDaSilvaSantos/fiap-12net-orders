@@ -3,7 +3,6 @@
     public interface ILogService
     {
         void Log(string log);
-
         void SendMessagesAsync(string message);
     }
 }

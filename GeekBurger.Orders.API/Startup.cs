@@ -40,14 +40,9 @@ namespace GeekBurger.Orders.API
             services.AddScoped<IPayService, PayService>();
             services.AddSingleton<ILogService, LogService>();
 
-            services.AddScoped(typeof(IServiceBusPub<>), typeof(ServiceBusPub<>));
-            services.AddScoped<IServiceBusSub, ServiceBusSub>();
-
-            
+            services.AddSingleton<IOrderChangedService, OrderChangedService>();
+            services.AddSingleton<INewOrderService, NewOrderService>();
             services.AddScoped<IOrderService, OrderService>();
-            services.AddScoped<IOrderChangedService, OrderChangedService>();
-            services.AddScoped<INewOrderService, NewOrderService>();
-
 
             mvcCoreBuilder
                 .AddFormatterMappings()

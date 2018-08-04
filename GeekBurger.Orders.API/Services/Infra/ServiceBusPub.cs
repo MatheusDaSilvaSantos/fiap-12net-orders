@@ -21,12 +21,12 @@ namespace GeekBurger.Orders.API.Services.Infra
     {
         public abstract string _topic { get; set; }
         
-        private IConfiguration _configuration;
-        private IMapper _mapper;
-        private List<Message> _messages;
-        private Task _lastTask;
-        private IServiceBusNamespace _namespace;
-        private ILogService _logService;
+        protected IConfiguration _configuration;
+        protected IMapper _mapper;
+        protected List<Message> _messages;
+        protected Task _lastTask;
+        protected IServiceBusNamespace _namespace;
+        protected ILogService _logService;
 
         public ServiceBusPub(IMapper mapper, IConfiguration configuration, ILogService logService)
         {
@@ -48,9 +48,9 @@ namespace GeekBurger.Orders.API.Services.Infra
 
         }
 
-        public abstract void AddToMessageList(IEnumerable<EntityEntry<TEntity>> changes);
+        public abstract void AddToMessageList(IEnumerable<TEntity> changes);
 
-        public abstract Message GetMessage(EntityEntry<TEntity> entity);
+        protected abstract Message GetMessage(TEntity entity);
 
         public async void SendMessagesAsync()
         {

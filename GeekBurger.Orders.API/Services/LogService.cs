@@ -8,5 +8,10 @@ namespace GeekBurger.Orders.API.Services
         {
             var texto = "[Order] - " + log;
         }
+
+        public void SendMessagesAsync(string message) {
+            var texto = "[Order] - " + message;
+
+        }
     }
 }

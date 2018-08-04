@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace GeekBurger.Orders.API.Contracts
+namespace GeekBurger.Orders.API.Contracts.Infra
 {
-    public abstract class IServiceBusService
+    public interface IServiceBusSub
     {
     }
 }

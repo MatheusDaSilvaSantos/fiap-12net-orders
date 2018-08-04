@@ -1,8 +1,12 @@
 ﻿using AutoMapper;
 using GeekBurger.Orders.API.Contracts;
+using GeekBurger.Orders.API.Contracts.Bus;
+using GeekBurger.Orders.API.Contracts.Infra;
 using GeekBurger.Orders.API.Middleware;
 using GeekBurger.Orders.API.Repository;
 using GeekBurger.Orders.API.Services;
+using GeekBurger.Orders.API.Services.Bus;
+using GeekBurger.Orders.API.Services.Infra;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -34,8 +38,16 @@ namespace GeekBurger.Orders.API
             services.AddDbContext<OrdersContext>(o => o.UseInMemoryDatabase("geekburger-orders"));
             services.AddScoped<IOrderRepository, OrderRepository>();
             services.AddScoped<IPayService, PayService>();
-            services.AddSingleton<IOrderService, OrderService>();
             services.AddSingleton<ILogService, LogService>();
+
+            services.AddScoped(typeof(IServiceBusPub<>), typeof(ServiceBusPub<>));
+            services.AddScoped<IServiceBusSub, ServiceBusSub>();
+
+            
+            services.AddScoped<IOrderService, OrderService>();
+            services.AddScoped<IOrderChangedService, OrderChangedService>();
+            services.AddScoped<INewOrderService, NewOrderService>();
+
 
             mvcCoreBuilder
                 .AddFormatterMappings()

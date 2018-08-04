@@ -4,5 +4,6 @@ namespace GeekBurger.Orders.API.Services
 {
     public class OrderService : IOrderService
     {
+
     }
 }

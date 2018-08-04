@@ -1,5 +1,4 @@
-﻿using System;
-using AutoMapper;
+﻿using AutoMapper;
 using GeekBurger.Orders.API.Contracts;
 using GeekBurger.Orders.Contract.DTOs;
 using Microsoft.AspNetCore.Mvc;
@@ -21,9 +20,12 @@ namespace GeekBurger.Orders.API.Controllers
         }
 
         [HttpPost]
-        public IActionResult Post([FromBody]PaymentToUpsert order)
+        public IActionResult Post([FromBody]PaymentToUpsert request)
         {
-            return Ok();
+            var order = _orderRepository.GetProductById(request.OrderId);
+            //TODO: passsar request no método pay.
+            var response = _payService.Pay(order);
+            return Ok(response);
         }
     }
 }

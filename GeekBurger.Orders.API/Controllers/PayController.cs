@@ -25,6 +25,7 @@ namespace GeekBurger.Orders.API.Controllers
             var order = _orderRepository.GetProductById(request.OrderId);
             //TODO: passsar request no método pay.
             var response = _payService.Pay(order);
+
             return Ok(response);
         }
     }

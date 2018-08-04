@@ -10,22 +10,28 @@ namespace GeekBurger.Orders.API.Controllers
     {
         private readonly IOrderRepository _orderRepository;
         private readonly IPayService _payService;
+        private readonly IOrderService _orderService;
         private IMapper _mapper;
 
-        public PayController(IOrderRepository orderRepository, IPayService payService, IMapper mapper)
+        public PayController(IOrderRepository orderRepository, IPayService payService, IOrderService orderService, IMapper mapper)
         {
             _orderRepository = orderRepository;
             _payService = payService;
             _mapper = mapper;
+            _orderService = orderService;
         }
 
         [HttpPost]
         public IActionResult Post([FromBody]PaymentToUpsert request)
         {
             var order = _orderRepository.GetProductById(request.OrderId);
-            //TODO: passsar request no método pay.
-            var response = _payService.Pay(order);
-            return Ok(response);
+            if (order == null)
+                return NotFound();
+            _payService.Pay(order, request);
+            _orderRepository.Save(order);
+            //TODO: publicar mensagem no OrderChanged
+            //_orderService.Send(order);
+            return Ok();
         }
     }
 }

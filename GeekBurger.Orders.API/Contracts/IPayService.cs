@@ -1,9 +1,10 @@
 ﻿using GeekBurger.Orders.API.Model;
+using GeekBurger.Orders.Contract.DTOs;
 
 namespace GeekBurger.Orders.API.Contracts
 {
     public interface IPayService
     {
-        bool Pay(Order order);
+        void Pay(Order order, PaymentToUpsert request);
     }
 }

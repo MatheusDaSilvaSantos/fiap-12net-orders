@@ -1,16 +1,19 @@
 ﻿using GeekBurger.Orders.API.Contracts;
 using GeekBurger.Orders.API.Model;
+using GeekBurger.Orders.Contract.DTOs;
+using GeekBurger.Orders.Contract.Enums;
+using System;
 
 namespace GeekBurger.Orders.API.Services
 {
     public class PayService : IPayService
     {
-        public bool Pay(Order order)
+        public void Pay(Order order, PaymentToUpsert payment)
         {
-            return true;
+            Random ran = new Random();
+            int randomIndex = ran.Next(3);
+            var state = (OrderState)Enum.ToObject(typeof(OrderState), randomIndex + 1);
+            order.SetState(state);
         }
-
-
-
     }
 }

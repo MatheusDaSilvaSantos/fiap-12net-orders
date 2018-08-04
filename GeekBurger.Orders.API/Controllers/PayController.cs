@@ -29,8 +29,7 @@ namespace GeekBurger.Orders.API.Controllers
                 return NotFound();
             _payService.Pay(order, request);
             _orderRepository.Save(order);
-
-            
+            _orderService.SendOrderChangedToServiceBus(order);
             //TODO: publicar mensagem no OrderChanged
             //_orderService.Send(order);
             return Ok();

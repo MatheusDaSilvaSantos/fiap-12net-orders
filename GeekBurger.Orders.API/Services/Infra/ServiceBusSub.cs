@@ -2,12 +2,16 @@
 using GeekBurger.Orders.API.Contracts.Bus;
 using GeekBurger.Orders.API.Contracts.Infra;
 using GeekBurger.Orders.API.Infra;
+using Microsoft.Azure.Management.ResourceManager.Fluent;
 using Microsoft.Azure.Management.ServiceBus.Fluent;
+using Microsoft.Azure.ServiceBus;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
+using SubscriptionClient = Microsoft.Azure.ServiceBus.SubscriptionClient;
 
 namespace GeekBurger.Orders.API.Services.Infra
 {
@@ -20,7 +24,7 @@ namespace GeekBurger.Orders.API.Services.Infra
         private Task _lastTask;
         private IServiceBusNamespace _namespace;
         private ILogService _logService;
-
+        private static string _storeId;
 
         public ServiceBusSub(IConfiguration configuration, ILogService logService)
         {
@@ -51,6 +55,36 @@ namespace GeekBurger.Orders.API.Services.Infra
                 topic.Subscriptions
                      .Define(_subscriptionName)
                      .Create();
+        }
+
+        protected async void ReceiveMessages(Func<Message, CancellationToken, Task> handler)
+        {
+            
+            var serviceBusConfiguration = _configuration.GetSection("serviceBus").Get<ServiceBusConfiguration>();
+            var subscriptionClient = new SubscriptionClient(serviceBusConfiguration.ConnectionString, _topic, _subscriptionName);
+
+            await subscriptionClient.RemoveRuleAsync("$Default");
+
+            await subscriptionClient.AddRuleAsync(new RuleDescription
+            {
+                Filter = new CorrelationFilter { Label = _storeId },
+                Name = "filter-store"
+            });
+
+            var mo = new MessageHandlerOptions(ExceptionHandle) { AutoComplete = true };
+
+            subscriptionClient.RegisterMessageHandler(handler, mo);
+
+            Console.ReadLine();
+        }
+
+        private static Task ExceptionHandle(ExceptionReceivedEventArgs arg)
+        {
+            //TODO: melhorar.
+            Console.WriteLine($"Message handler encountered an exception {arg.Exception}.");
+            var context = arg.ExceptionReceivedContext;
+            Console.WriteLine($"- Endpoint: {context.Endpoint}, Path: {context.EntityPath}, Action: {context.Action}");
+            return Task.CompletedTask;
         }
     }
 }

@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace GeekBurger.Orders.API.Contracts
 {
-    public interface IOrderService : IServiceBusTopicSubscriber
+    public class IBusCommunication
     {
     }
 }

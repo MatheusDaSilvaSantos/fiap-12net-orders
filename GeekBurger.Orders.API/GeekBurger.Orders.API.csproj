@@ -16,8 +16,10 @@
     <PackageReference Include="GeekBurger.Orders.Contract" Version="2.0.0" />
     <PackageReference Include="GeekBurger.Ui.Contracts" Version="1.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.5" />
+    <PackageReference Include="Microsoft.Azure.Management.ServiceBus.Fluent" Version="1.13.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.1.1" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="2.4.0" />
+    <PackageReference Include="WindowsAzure.ServiceBus" Version="5.0.0" />
   </ItemGroup>
 
   <ItemGroup>

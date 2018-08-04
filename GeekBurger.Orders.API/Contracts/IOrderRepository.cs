@@ -6,5 +6,6 @@ namespace GeekBurger.Orders.API.Contracts
     public interface IOrderRepository
     {
         Order GetProductById(Guid orderId);
+        void Save(Order order);
     }
 }

@@ -35,6 +35,7 @@ namespace GeekBurger.Orders.API
             services.AddScoped<IOrderRepository, OrderRepository>();
             services.AddScoped<IPayService, PayService>();
             services.AddSingleton<IOrderService, OrderService>();
+            services.AddSingleton<ILogService, LogService>();
 
             mvcCoreBuilder
                 .AddFormatterMappings()

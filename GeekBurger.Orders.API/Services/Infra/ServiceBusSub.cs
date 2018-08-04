@@ -1,4 +1,5 @@
 ﻿using GeekBurger.Orders.API.Contracts;
+using GeekBurger.Orders.API.Contracts.Bus;
 using GeekBurger.Orders.API.Contracts.Infra;
 using GeekBurger.Orders.API.Infra;
 using Microsoft.Azure.Management.ServiceBus.Fluent;

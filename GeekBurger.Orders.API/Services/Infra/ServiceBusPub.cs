@@ -14,6 +14,7 @@ using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using System.Text;
 using System.Threading;
+using GeekBurger.Orders.API.Contracts.Bus;
 
 namespace GeekBurger.Orders.API.Services.Infra
 {
@@ -23,18 +24,18 @@ namespace GeekBurger.Orders.API.Services.Infra
         
         protected IConfiguration _configuration;
         protected IMapper _mapper;
+        protected ILogService _logService;
         protected List<Message> _messages;
         protected Task _lastTask;
         protected IServiceBusNamespace _namespace;
-        protected ILogService _logService;
 
         public ServiceBusPub(IMapper mapper, IConfiguration configuration, ILogService logService)
         {
             _mapper = mapper;
             _configuration = configuration;
-            _logService = logService;
             _messages = new List<Message>();
             _namespace = _configuration.GetServiceBusNamespace();
+            _logService = logService;
             EnsureTopicIsCreated();
         }
 
@@ -48,7 +49,7 @@ namespace GeekBurger.Orders.API.Services.Infra
 
         }
 
-        public abstract void AddToMessageList(IEnumerable<TEntity> changes);
+        public abstract void AddToMessageList(TEntity changes);
 
         protected abstract Message GetMessage(TEntity entity);
 
@@ -60,7 +61,7 @@ namespace GeekBurger.Orders.API.Services.Infra
             var config = _configuration.GetSection("serviceBus").Get<ServiceBusConfiguration>();
             var topicClient = new TopicClient(config.ConnectionString, _topic);
 
-            _logService.SendMessagesAsync("Product was changed");
+            _logService.Log("Order Sent");
 
             _lastTask = SendAsync(topicClient);
 
@@ -70,6 +71,8 @@ namespace GeekBurger.Orders.API.Services.Infra
             await closeTask;
             HandleException(closeTask);
         }
+
+
 
         public async Task SendAsync(TopicClient topicClient)
         {

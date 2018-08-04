@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace GeekBurger.Orders.API.Contracts.Infra
 {
-    public interface IServiceBusPub<TEntity> where TEntity : class
+    public interface IServiceBusPub<T> where T : class
     {
         void EnsureTopicIsCreated();
 
-        void AddToMessageList(IEnumerable<TEntity> changes);
+        void AddToMessageList(T changes);
 
         void SendMessagesAsync();
 

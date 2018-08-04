@@ -25,9 +25,9 @@ namespace GeekBurger.Orders.API.Services.Bus
         {
         }
 
-        public override void AddToMessageList(IEnumerable<Order> orders)
+        public override void AddToMessageList(Order order)
         {
-            _messages.AddRange(orders.Select(GetMessage));
+            _messages.Add(GetMessage(order));
         }
 
         protected override Message GetMessage(Order order)

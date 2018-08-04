@@ -9,6 +9,5 @@ namespace GeekBurger.Orders.API.Contracts.Bus
 {
     public interface IOrderChangedService : IServiceBusPub<Order>
     {
-
     }
 }

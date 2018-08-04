@@ -29,7 +29,7 @@ namespace GeekBurger.Orders.API.Services
         {
             await Task.Run(() =>
             {
-                _orderChangedService.AddToMessageList(new List<Order> { order });
+                _orderChangedService.AddToMessageList(order);
                 _orderChangedService.SendMessagesAsync();
             });
         }

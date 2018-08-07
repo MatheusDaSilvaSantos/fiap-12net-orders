@@ -34,7 +34,7 @@ namespace GeekBurger.Orders.API
                 Version = "v2"
             }));
 
-            services.AddDbContext<OrdersContext>(o => o.UseInMemoryDatabase("geekburger-orders"));
+            services.AddDbContext<OrdersContext>();
             services.AddScoped<IOrderRepository, OrderRepository>();
             services.AddScoped<IPayService, PayService>();
             services.AddSingleton<ILogService, LogService>();

@@ -8,13 +8,13 @@ namespace GeekBurger.Orders.API.Model
     public class Order 
     {
         [Key]
-        public Guid OrderId { get; set; }
+        public int OrderId { get; set; }
         public string Total { get; set; }
         public string Products{get; set;}
         public string ProductionIds { get; set; }
-        public OrderState State { get; set; }
+        public StateOrder State { get; set; }
 
-        public void SetState(OrderState state) => State = state;
+        public void SetState(StateOrder state) => State = state;
 
     }
 }

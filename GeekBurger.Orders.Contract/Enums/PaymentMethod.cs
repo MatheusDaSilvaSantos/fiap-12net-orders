@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace GeekBurger.Orders.Contract.Enums
+﻿namespace GeekBurger.Orders.Contract.Enums
 {
     public enum PaymentMethod
     {

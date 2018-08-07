@@ -2,6 +2,7 @@
 using GeekBurger.Orders.API.Contracts.Bus;
 using GeekBurger.Orders.API.Model;
 using GeekBurger.Orders.API.Services.Infra;
+using GeekBurger.Orders.Contract.Enums;
 using GeekBurger.Orders.Contract.Messages;
 using Microsoft.Azure.ServiceBus;
 using Microsoft.Extensions.Configuration;
@@ -24,7 +25,11 @@ namespace GeekBurger.Orders.API.Services.Bus
 
         protected override Message GetMessage(Order order)
         {
-            var productChanged = Mapper.Map<OrderChangedMessage>(order);
+            var productChanged = new OrderChangedMessage
+            {
+                OrderId = order.OrderId,
+                State = (OrderState)order.State
+            };
             var productChangedSerialized = JsonConvert.SerializeObject(productChanged);
             var productChangedByteArray = Encoding.UTF8.GetBytes(productChangedSerialized);
 

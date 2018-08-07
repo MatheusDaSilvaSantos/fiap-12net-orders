@@ -7,7 +7,7 @@ namespace GeekBurger.Orders.Contract.DTOs
 {
     public class PaymentToUpsert
     {
-        public Guid OrderId { get; set; }
+        public int OrderId { get; set; }
         public Guid StoreId { get; set; }
         public PaymentMethod PayType { get; set; }
         public string CardNumber { get; set; }

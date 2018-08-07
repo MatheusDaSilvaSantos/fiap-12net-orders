@@ -5,10 +5,9 @@ namespace GeekBurger.Orders.API.Repository
 {
     public class OrdersContext : DbContext
     {
-        public OrdersContext(DbContextOptions<OrdersContext> options)
-            :base(options)
-        {}
-
         public DbSet<Order> Orders { get; set; }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+            => optionsBuilder.UseInMemoryDatabase("geekburger-orders");
     }
 }

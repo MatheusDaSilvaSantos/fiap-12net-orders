@@ -1,13 +1,10 @@
-﻿using GeekBurger.Orders.API.Contracts;
-using GeekBurger.Orders.API.Contracts.Bus;
+﻿using GeekBurger.Orders.API.Contracts.Bus;
 using GeekBurger.Orders.API.Contracts.Infra;
 using GeekBurger.Orders.API.Infra;
-using Microsoft.Azure.Management.ResourceManager.Fluent;
 using Microsoft.Azure.Management.ServiceBus.Fluent;
 using Microsoft.Azure.ServiceBus;
 using Microsoft.Extensions.Configuration;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;

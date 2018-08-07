@@ -3,6 +3,7 @@ using GeekBurger.Orders.API.Contracts;
 using GeekBurger.Orders.API.Model;
 using GeekBurger.Orders.Contract.DTOs;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace GeekBurger.Orders.API.Controllers
 {
@@ -23,15 +24,15 @@ namespace GeekBurger.Orders.API.Controllers
         }
 
         [HttpPost]
-        public IActionResult Post([FromBody]PaymentToUpsert request)
+        public async Task<IActionResult> Post([FromBody]PaymentToUpsert request)
         {
             var payment = _mapper.Map<Payment>(request);
             var order = _orderRepository.GetProductById(payment.OrderId);
             if (order == null)
                 return NotFound();
             _payService.Pay(order, payment);
-            _orderRepository.Save(order);
-            _orderService.SendOrderChangedToServiceBus(order);
+           await Task.Run(() =>_orderRepository.UpdateAsync(order));
+           await _orderService.SendOrderChangedToServiceBus(order);
             return Ok();
         }
     }

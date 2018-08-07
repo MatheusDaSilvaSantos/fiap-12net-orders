@@ -4,7 +4,7 @@ namespace GeekBurger.Orders.API.Model
 {
     public class Payment
     {
-        public Guid OrderId { get; set; }
+        public int OrderId { get; set; }
         public Guid StoreId { get; set; }
         public PaymentType PayType { get; set; }
         public string CardNumber { get; set; }

@@ -62,7 +62,6 @@ namespace GeekBurger.Orders.API.Services.Infra
             var serviceBusConfiguration = _configuration.GetSection("serviceBus").Get<ServiceBusConfiguration>();
             var subscriptionClient = new SubscriptionClient(serviceBusConfiguration.ConnectionString, _topic, _subscriptionName);
 
-            //TODO: tratar exceção
             var rules = await subscriptionClient.GetRulesAsync();
             if (rules.Any(x => x.Name == "$Default"))
                 await subscriptionClient.RemoveRuleAsync("$Default");
@@ -81,7 +80,6 @@ namespace GeekBurger.Orders.API.Services.Infra
 
         private static Task ExceptionHandle(ExceptionReceivedEventArgs arg)
         {
-            //TODO: melhorar.
             Console.WriteLine($"Message handler encountered an exception {arg.Exception}.");
             var context = arg.ExceptionReceivedContext;
             Console.WriteLine($"- Endpoint: {context.Endpoint}, Path: {context.EntityPath}, Action: {context.Action}");

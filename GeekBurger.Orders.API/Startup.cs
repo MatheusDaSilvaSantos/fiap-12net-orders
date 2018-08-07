@@ -48,6 +48,8 @@ namespace GeekBurger.Orders.API
                 .AddJsonFormatters()
                 .AddCors()
                 .AddApiExplorer();
+
+            services.AddMvc();
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
@@ -62,6 +64,11 @@ namespace GeekBurger.Orders.API
             app.UseMiddleware(typeof(ExceptionMiddleware));
 
             app.UseMvc();
+
+            using (var scope = app.ApplicationServices.CreateScope())
+            {
+                var newOrderService = scope.ServiceProvider.GetService<INewOrderService>();
+            }
         }
     }
 }

@@ -1,7 +1,6 @@
 ﻿using GeekBurger.Orders.API.Contracts;
 using GeekBurger.Orders.API.Contracts.Bus;
 using GeekBurger.Orders.API.Model;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace GeekBurger.Orders.API.Services
@@ -16,13 +15,6 @@ namespace GeekBurger.Orders.API.Services
         {
             _newOrderService = newOrderService;
             _orderChangedService = orderChangedService;
-        }
-
-        public void Startup()
-        {
-            // TODO: connect new order service
-
-            // _newOrderService.Startup();
         }
 
         public async Task SendOrderChangedToServiceBus(Order order)

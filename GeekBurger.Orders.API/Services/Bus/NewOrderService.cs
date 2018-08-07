@@ -15,16 +15,16 @@ namespace GeekBurger.Orders.API.Services.Bus
 {
     public class NewOrderService : ServiceBusSub, INewOrderService
     {
-        private readonly IOrderRepository _orderRepository;
-        private readonly IMapper _mapper;
+        //private readonly IOrderRepository _orderRepository;
+        //private readonly IMapper _mapper;
         public override string _topic { get; set; } = "NewOrder";
         public override string _subscriptionName { get; set; } = "SubscriptionNewOrderPay";
+        public override string _storeId { get; set; } = "8048e9ec-80fe-4bad-bc2a-e4f4a75c834e";
 
-        public NewOrderService(IConfiguration configuration, ILogService logService, IOrderRepository orderRepository, IMapper mapper)
+        public NewOrderService(IConfiguration configuration, ILogService logService)
             : base(configuration, logService)
         {
-            _orderRepository = orderRepository;
-            _mapper = mapper;
+            
             ReceiveMessages(Handle);
         }
 
@@ -32,8 +32,8 @@ namespace GeekBurger.Orders.API.Services.Bus
         {
             var newOrderString = Encoding.UTF8.GetString(message.Body);
             var newOrder = JsonConvert.DeserializeObject<NewOrderMessage>(newOrderString);
-            var order = _mapper.Map<Order>(newOrder);
-            _orderRepository.Save(order);
+            //var order = _mapper.Map<Order>(newOrder);
+            //_orderRepository.Save(order);
             return Task.CompletedTask;
         }
 

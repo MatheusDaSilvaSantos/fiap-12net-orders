@@ -5,7 +5,7 @@ namespace GeekBurger.Orders.API.Repository
 {
     public class OrdersContext : DbContext
     {
-        protected OrdersContext(DbContextOptions<OrdersContext> options)
+        public OrdersContext(DbContextOptions<OrdersContext> options)
             :base(options)
         {}
 

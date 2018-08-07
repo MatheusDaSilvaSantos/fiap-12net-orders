@@ -7,7 +7,7 @@ namespace GeekBurger.Orders.API.Repository
 {   
     public class OrderRepository : IOrderRepository
     {
-        private readonly OrdersContext _context;
+        private OrdersContext _context;
         public OrderRepository(OrdersContext context) 
             => _context = context;
         

@@ -19,12 +19,11 @@ namespace GeekBurger.Orders.API.Services.Infra
     {
         public abstract string _topic { get; set; }
         public abstract string _subscriptionName { get; set; }
+        public abstract string _storeId { get; set; }
 
         private IConfiguration _configuration;
-        private Task _lastTask;
         private IServiceBusNamespace _namespace;
         private ILogService _logService;
-        private static string _storeId;
 
         public ServiceBusSub(IConfiguration configuration, ILogService logService)
         {
@@ -59,23 +58,25 @@ namespace GeekBurger.Orders.API.Services.Infra
 
         protected async void ReceiveMessages(Func<Message, CancellationToken, Task> handler)
         {
-            
+
             var serviceBusConfiguration = _configuration.GetSection("serviceBus").Get<ServiceBusConfiguration>();
             var subscriptionClient = new SubscriptionClient(serviceBusConfiguration.ConnectionString, _topic, _subscriptionName);
 
-            await subscriptionClient.RemoveRuleAsync("$Default");
+            //TODO: tratar exceção
+            var rules = await subscriptionClient.GetRulesAsync();
+            if (rules.Any(x => x.Name == "$Default"))
+                await subscriptionClient.RemoveRuleAsync("$Default");
 
-            await subscriptionClient.AddRuleAsync(new RuleDescription
-            {
-                Filter = new CorrelationFilter { Label = _storeId },
-                Name = "filter-store"
-            });
+            if(!rules.Any(x => x.Name == "filter-store"))
+                await subscriptionClient.AddRuleAsync(new RuleDescription
+                {
+                    Filter = new CorrelationFilter { Label = _storeId },
+                    Name = "filter-store"
+                });
 
             var mo = new MessageHandlerOptions(ExceptionHandle) { AutoComplete = true };
 
             subscriptionClient.RegisterMessageHandler(handler, mo);
-
-            Console.ReadLine();
         }
 
         private static Task ExceptionHandle(ExceptionReceivedEventArgs arg)

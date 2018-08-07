@@ -1,12 +1,10 @@
 ﻿using AutoMapper;
 using GeekBurger.Orders.API.Contracts;
 using GeekBurger.Orders.API.Contracts.Bus;
-using GeekBurger.Orders.API.Contracts.Infra;
 using GeekBurger.Orders.API.Middleware;
 using GeekBurger.Orders.API.Repository;
 using GeekBurger.Orders.API.Services;
 using GeekBurger.Orders.API.Services.Bus;
-using GeekBurger.Orders.API.Services.Infra;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -25,15 +23,16 @@ namespace GeekBurger.Orders.API
 
         public void ConfigureServices(IServiceCollection services)
         {
+            
             var mvcCoreBuilder = services.AddMvcCore();
+
+            services.AddAutoMapper();
 
             services.AddSwaggerGen(c => c.SwaggerDoc("v1", new Info
             {
                 Title = "GeekBurger - Orders",
                 Version = "v2"
             }));
-
-            services.AddAutoMapper();
 
             services.AddDbContext<OrdersContext>(o => o.UseInMemoryDatabase("geekburger-orders"));
             services.AddScoped<IOrderRepository, OrderRepository>();

@@ -5,14 +5,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Azure.ServiceBus;
-using GeekBurger.Orders.API.Contracts;
 using Microsoft.Azure.Management.ServiceBus.Fluent;
-using AutoMapper;
 using GeekBurger.Orders.API.Infra;
-using Microsoft.EntityFrameworkCore.ChangeTracking;
-using Microsoft.EntityFrameworkCore;
-using Newtonsoft.Json;
-using System.Text;
 using System.Threading;
 using GeekBurger.Orders.API.Contracts.Bus;
 
@@ -23,15 +17,13 @@ namespace GeekBurger.Orders.API.Services.Infra
         public abstract string _topic { get; set; }
         
         protected IConfiguration _configuration;
-        protected IMapper _mapper;
         protected ILogService _logService;
         protected List<Message> _messages;
         protected Task _lastTask;
         protected IServiceBusNamespace _namespace;
 
-        public ServiceBusPub(IMapper mapper, IConfiguration configuration, ILogService logService)
+        public ServiceBusPub(IConfiguration configuration, ILogService logService)
         {
-            _mapper = mapper;
             _configuration = configuration;
             _messages = new List<Message>();
             _namespace = _configuration.GetServiceBusNamespace();

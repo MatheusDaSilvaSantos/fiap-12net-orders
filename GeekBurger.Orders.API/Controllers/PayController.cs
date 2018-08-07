@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using GeekBurger.Orders.API.Contracts;
+using GeekBurger.Orders.API.Model;
 using GeekBurger.Orders.Contract.DTOs;
 using Microsoft.AspNetCore.Mvc;
 
@@ -24,14 +25,13 @@ namespace GeekBurger.Orders.API.Controllers
         [HttpPost]
         public IActionResult Post([FromBody]PaymentToUpsert request)
         {
-            var order = _orderRepository.GetProductById(request.OrderId);
+            var payment = _mapper.Map<Payment>(request);
+            var order = _orderRepository.GetProductById(payment.OrderId);
             if (order == null)
                 return NotFound();
-            _payService.Pay(order, request);
+            _payService.Pay(order, payment);
             _orderRepository.Save(order);
             _orderService.SendOrderChangedToServiceBus(order);
-            //TODO: publicar mensagem no OrderChanged
-            //_orderService.Send(order);
             return Ok();
         }
     }

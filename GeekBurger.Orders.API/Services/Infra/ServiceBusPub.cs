@@ -23,11 +23,16 @@ namespace GeekBurger.Orders.API.Services.Infra
         protected IServiceBusNamespace _namespace;
 
         public ServiceBusPub(IConfiguration configuration, ILogService logService)
+            :this(configuration)
+        {
+            _logService = logService;
+        }
+
+        public ServiceBusPub(IConfiguration configuration)
         {
             _configuration = configuration;
             _messages = new List<Message>();
             _namespace = _configuration.GetServiceBusNamespace();
-            _logService = logService;
             EnsureTopicIsCreated();
         }
 

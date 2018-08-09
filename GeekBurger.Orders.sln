@@ -7,7 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GeekBurger.Orders.API", "Ge
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GeekBurger.Orders.Contract", "GeekBurger.Orders.Contract\GeekBurger.Orders.Contract.csproj", "{FD2F5BD2-DCC5-46B0-BB75-B548490C31A5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeekBurger.Orders.Mocks", "GeekBurger.Orders.Mocks\GeekBurger.Orders.Mocks.csproj", "{21F213C8-05FE-40C7-9D3A-DBCD96AF9727}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GeekBurger.Orders.Mocks", "GeekBurger.Orders.Mocks\GeekBurger.Orders.Mocks.csproj", "{21F213C8-05FE-40C7-9D3A-DBCD96AF9727}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeekBurger.LogMonitor", "GeekBurger.LogMonitor\GeekBurger.LogMonitor.csproj", "{156D7775-6EED-4A01-8B11-322D936EE9A4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{21F213C8-05FE-40C7-9D3A-DBCD96AF9727}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{21F213C8-05FE-40C7-9D3A-DBCD96AF9727}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{21F213C8-05FE-40C7-9D3A-DBCD96AF9727}.Release|Any CPU.Build.0 = Release|Any CPU
+		{156D7775-6EED-4A01-8B11-322D936EE9A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{156D7775-6EED-4A01-8B11-322D936EE9A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{156D7775-6EED-4A01-8B11-322D936EE9A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{156D7775-6EED-4A01-8B11-322D936EE9A4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

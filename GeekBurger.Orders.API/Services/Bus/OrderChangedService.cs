@@ -37,7 +37,7 @@ namespace GeekBurger.Orders.API.Services.Bus
             {
                 Body = productChangedByteArray,
                 MessageId = Guid.NewGuid().ToString(),
-                Label = $"[Orders] - OrderChanged: {productChanged.OrderId.ToString()}"
+                Label = productChanged.OrderId.ToString()
             };
         }
     }

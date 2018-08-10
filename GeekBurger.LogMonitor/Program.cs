@@ -14,7 +14,7 @@ namespace GeekBurger.LogMonitor
 {
     class Program
     {
-        private const string TopicName = "Log";
+        private const string TopicName = "OrderChanged";
         private static IConfiguration _configuration;
         private static ServiceBusConfiguration _serviceBusConfiguration;
         private const string SubscriptionName = "Monitor";

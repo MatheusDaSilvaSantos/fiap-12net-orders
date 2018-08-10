@@ -30,7 +30,7 @@ namespace GeekBurger.Orders.API.Services.Bus
                 OrderId = order.OrderId,
                 State = (OrderState)order.State,
                 StoreId = order.StoreId,
-                Valor = valor
+                Value = valor
             };
             var productChangedSerialized = JsonConvert.SerializeObject(productChanged);
             var productChangedByteArray = Encoding.UTF8.GetBytes(productChangedSerialized);

@@ -1,5 +1,6 @@
 ﻿using GeekBurger.Orders.API.Contracts;
 using GeekBurger.Orders.API.Model;
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -11,7 +12,7 @@ namespace GeekBurger.Orders.API.Repository
         public OrderRepository(OrdersContext context) 
             => _context = context;
         
-        public Order GetProductById(int orderId) 
+        public Order GetProductById(Guid orderId) 
             => _context.Orders?.FirstOrDefault(order => order.OrderId == orderId);
 
         public async Task SaveAsync(Order order)

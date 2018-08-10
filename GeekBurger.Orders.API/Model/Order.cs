@@ -8,7 +8,8 @@ namespace GeekBurger.Orders.API.Model
     public class Order 
     {
         [Key]
-        public int OrderId { get; set; }
+        public Guid OrderId { get; set; }
+        public Guid StoreId { get; set; }
         public string Total { get; set; }
         public string Products{get; set;}
         public string ProductionIds { get; set; }

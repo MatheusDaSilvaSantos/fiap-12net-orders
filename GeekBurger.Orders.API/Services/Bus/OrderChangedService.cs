@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using GeekBurger.Orders.API.Contracts.Bus;
+﻿using GeekBurger.Orders.API.Contracts.Bus;
 using GeekBurger.Orders.API.Model;
 using GeekBurger.Orders.API.Services.Infra;
 using GeekBurger.Orders.Contract.Enums;
@@ -25,10 +24,13 @@ namespace GeekBurger.Orders.API.Services.Bus
 
         protected override Message GetMessage(Order order)
         {
+            decimal.TryParse(order.Total, out decimal valor);
             var productChanged = new OrderChangedMessage
             {
                 OrderId = order.OrderId,
-                State = (OrderState)order.State
+                State = (OrderState)order.State,
+                StoreId = order.StoreId,
+                Valor = valor
             };
             var productChangedSerialized = JsonConvert.SerializeObject(productChanged);
             var productChangedByteArray = Encoding.UTF8.GetBytes(productChangedSerialized);

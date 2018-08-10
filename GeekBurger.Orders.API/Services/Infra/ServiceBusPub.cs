@@ -58,7 +58,7 @@ namespace GeekBurger.Orders.API.Services.Infra
             var config = _configuration.GetSection("serviceBus").Get<ServiceBusConfiguration>();
             var topicClient = new TopicClient(config.ConnectionString, _topic);
 
-            _logService.Log("Order Sent");
+            var logTask = _logService.Log("Order Sent");
 
             _lastTask = SendAsync(topicClient);
 
@@ -67,6 +67,7 @@ namespace GeekBurger.Orders.API.Services.Infra
             var closeTask = topicClient.CloseAsync();
             await closeTask;
             HandleException(closeTask);
+            await logTask;
         }
 
 

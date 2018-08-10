@@ -20,7 +20,7 @@ namespace GeekBurger.Orders.API.Services.Bus
             :base(configuration)
         {}
 
-        public async void SendMessagesAsync(string message)
+        public async Task SendMessagesAsync(string message)
         {
             if (_lastTask != null && !_lastTask.IsCompleted)
                 return;
@@ -36,10 +36,10 @@ namespace GeekBurger.Orders.API.Services.Bus
 
         public async Task Log(string message)
         {
-            await Task.Run(() =>
+            await Task.Run(async () =>
             {
                 AddToMessageList(message);
-                SendMessagesAsync(message);
+                await SendMessagesAsync(message);
             });
         }
 

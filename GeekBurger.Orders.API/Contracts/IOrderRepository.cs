@@ -6,7 +6,7 @@ namespace GeekBurger.Orders.API.Contracts
 {
     public interface IOrderRepository
     {
-        Order GetProductById(int orderId);
+        Order GetProductById(Guid orderId);
         Task SaveAsync(Order order);
         Task UpdateAsync(Order order);
     }

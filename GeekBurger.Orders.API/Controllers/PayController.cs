@@ -30,6 +30,8 @@ namespace GeekBurger.Orders.API.Controllers
             var order = _orderRepository.GetProductById(payment.OrderId);
             if (order == null)
                 return NotFound();
+
+            order.StoreId = request.StoreId;
             _payService.Pay(order, payment);
 
             var tasks = new Task[]

@@ -31,8 +31,15 @@ namespace GeekBurger.Orders.API.Controllers
             if (order == null)
                 return NotFound();
             _payService.Pay(order, payment);
-           await Task.Run(() =>_orderRepository.UpdateAsync(order));
-           await _orderService.SendOrderChangedToServiceBus(order);
+
+            var tasks = new Task[]
+            {
+                _orderRepository.UpdateAsync(order),
+                _orderService.SendOrderChangedToServiceBus(order)
+            };
+
+            await Task.WhenAll(tasks);
+
             return Ok();
         }
     }

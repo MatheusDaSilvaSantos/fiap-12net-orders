@@ -1,10 +1,13 @@
 ﻿using GeekBurger.Orders.Contract.Enums;
+using System;
 
 namespace GeekBurger.Orders.Contract.Messages
 {
     public class OrderChangedMessage
     {
-        public int OrderId { get; set; }
+        public Guid OrderId { get; set; }
+        public Guid StoreId { get; set; }
         public OrderState State { get; set; }
+        public decimal Valor { get; set; }
     }
 }

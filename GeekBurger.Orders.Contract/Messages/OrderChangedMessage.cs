@@ -8,6 +8,6 @@ namespace GeekBurger.Orders.Contract.Messages
         public Guid OrderId { get; set; }
         public Guid StoreId { get; set; }
         public OrderState State { get; set; }
-        public decimal Valor { get; set; }
+        public decimal Value { get; set; }
     }
 }
